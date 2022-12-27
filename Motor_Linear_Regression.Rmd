@@ -1,0 +1,12 @@
+---
+title: "Linear Regression"
+author: "Silva, Eder H N"
+date: "2022-12-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Correspondence Between Force and Command Input
