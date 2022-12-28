@@ -1,10 +1,17 @@
 rm(list=ls()) 
+
+install.packages("rjson")
+install.packages("readr")
+install.packages("latex2exp")
+
+
 #Library
 library(readr)
-library(modeest)
-
+library(rjson)
+library(latex2exp)
 
 #Citing
 citation()
 citation("readr")
-citation("modeest")
+citation("rjson")
+citation("latex2exp")
