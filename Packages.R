@@ -1,9 +1,9 @@
 rm(list=ls()) 
 
+#Install
 install.packages("rjson")
 install.packages("readr")
 install.packages("latex2exp")
-
 
 #Library
 library(readr)
