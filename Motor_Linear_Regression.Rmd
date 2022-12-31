@@ -57,19 +57,11 @@ colnames(modelagem)=c("u","Mean","Median","Length")
 
 for (i in 1:length(uni)) {
   
-  #Seleciona as linhas com tensões iguais ao valor do vetor uni
   filtered_rows <- data$u == uni[i]
   modelagem[i,1] <- uni[i]
-  #Guarda as linhas com tensões iguais no vetor rows 
   rows <- data[filtered_rows,]
-  
-  #Guarda a média dos valores de força 
   modelagem[i,2]  <- mean(rows[,2])
-  
-  #Guarda a mediana dos valores de força 
   modelagem[i,3] <- median(rows[,2])
-  
-  #Guarda a moda dos valores de força 
   modelagem[i,4] <- length(rows[,2])
 }
 head(modelagem)
@@ -235,20 +227,12 @@ modelagem = matrix(data=0, ncol=4, nrow=length(uni))
 colnames(modelagem)=c("u","Mean","Median","Length")
 
 for (i in 1:length(uni)) {
-  
-  #Seleciona as linhas com tensões iguais ao valor do vetor uni
+
   filtered_rows <- data$u == uni[i]
   modelagem[i,1] <- uni[i]
-  #Guarda as linhas com tensões iguais no vetor rows 
   rows <- data[filtered_rows,]
-  
-  #Guarda a média dos valores de força 
   modelagem[i,2]  <- mean(rows[,2])
-  
-  #Guarda a mediana dos valores de força 
   modelagem[i,3] <- median(rows[,2])
-  
-  #Guarda a moda dos valores de força 
   modelagem[i,4] <- length(rows[,2])
 }
 head(modelagem)
