@@ -2,7 +2,7 @@
 title: "Linear Regression"
 author: "Silva, Eder H N"
 date: "2022-12-28"
-output: pdf_document
+#output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -90,7 +90,7 @@ cor.test(x=modelagem[,1],y=modelagem[,3])
 
 # Building a Simple Linear Regression Model
 
-$$y_i=\beta_0 + \beta_1 u_i + \beta_2 u_i^2 + \beta_3 u_i^3 + \varepsilon_i$$
+$$y_i=\beta_0 + \beta_1 u_i + \beta_2 u_i^2 + \varepsilon_i$$
 
 ```{r Linear Regression, echo=TRUE}
 u <- modelagem[,1]
@@ -98,17 +98,17 @@ y <- modelagem[,3]
 
 X <- u
 XSQ <- u**2
-XCUB <- u**3
 
-model=lm(y~1+X+XSQ+XCUB)
+model=lm(y~1+X+XSQ)
 anova(model)
 summary(model)
 summ=summary(model)
+
 func <- model$coefficients
 print(func)
 
 u=0:10
-y=as.numeric(func[1])+as.numeric(func[2])*u+as.numeric(func[3])*u**2+as.numeric(func[4])*u**3
+y=as.numeric(func[1])+as.numeric(func[2])*u+as.numeric(func[3])*u**2
 
 plot(x=data[,3],y=data[,2],ylim=c(min(data[,2]),max(data[,2])),type="n",ylab="Force (N)",xlab="Command Input (u)",main="Scatter Plot",lwd=2,bty="l")
 par(new=TRUE)
@@ -184,8 +184,8 @@ legend("topright",legend = c('residual','median'),col = c("darkblue","red"),lty 
 ```{r , echo=TRUE}
 # creating the list
 list1 <- vector(mode="list", length=2)
-list1[[1]] <- c("Intercept", "u", "u^2", "u^3")
-list1[[2]] <- c(as.numeric(func[1]), as.numeric(func[2]),as.numeric(func[3]), as.numeric(func[4]))
+list1[[1]] <- c("Intercept", "u", "u^2")
+list1[[2]] <- c(as.numeric(func[1]), as.numeric(func[2]),as.numeric(func[3]))
 
 # creating the data for JSON file
 jsonData <- toJSON(list1)
@@ -249,9 +249,9 @@ y <- modelagem[,3]
 
 X <- u
 XSQ <- u**2
-XCUB <- u**3
 
-model=lm(y~1+X+XSQ+XCUB)
+
+model=lm(y~1+X+XSQ)
 anova(model)
 summary(model)
 summ=summary(model)
@@ -259,7 +259,7 @@ func <- model$coefficients
 print(func)
 
 u=0:10
-y=as.numeric(func[1])+as.numeric(func[2])*u+as.numeric(func[3])*u**2+as.numeric(func[4])*u**3
+y=as.numeric(func[1])+as.numeric(func[2])*u+as.numeric(func[3])*u**2
 
 plot(x=data[,3],y=data[,2],ylim=c(min(data[,2]),max(data[,2])),type="n",ylab="Force (N)",xlab="Command Input (u)",main="Scatter Plot",lwd=2,bty="l")
 par(new=TRUE)
@@ -312,7 +312,7 @@ plot(error,pch=19,col="darkblue",main="Residuals versus the Order of the Data",x
 par(new=TRUE)
 plot(error,type="l",axes=FALSE,ann=FALSE)
 abline(h=0,lty=2,col="red") 
-legend("topright",legend = c('residual','median'),col = c("darkblue","red"),lty = c(0,2), lwd=2, pch =c(16,NA))
+legend("bottomright",legend = c('residual','median'),col = c("darkblue","red"),lty = c(0,2), lwd=2, pch =c(16,NA))
 ```
 
 # Writing into JSON file
@@ -320,8 +320,8 @@ legend("topright",legend = c('residual','median'),col = c("darkblue","red"),lty 
 ```{r , echo=TRUE}
 # creating the list
 list1 <- vector(mode="list", length=2)
-list1[[1]] <- c("Intercept", "u", "u^2", "u^3")
-list1[[2]] <- c(as.numeric(func[1]), as.numeric(func[2]),as.numeric(func[3]), as.numeric(func[4]))
+list1[[1]] <- c("Intercept", "u", "u^2")
+list1[[2]] <- c(as.numeric(func[1]), as.numeric(func[2]),as.numeric(func[3]))
 
 # creating the data for JSON file
 jsonData <- toJSON(list1)
